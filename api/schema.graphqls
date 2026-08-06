@@ -1,0 +1,20 @@
+type Athlete {
+    id: ID!
+    name: String!
+}
+
+extend type Athlete {
+    performance: Performance @goField(forceResolver: true)
+}
+
+type Performance {
+    avgSpeed: Float!
+    inTraining: Boolean!
+}
+
+type Query {
+    athletes: [Athlete!]!
+}
+
+directive @goField(forceResolver: Boolean, name: String) on INPUT_FIELD_DEFINITION
+    | FIELD_DEFINITION
